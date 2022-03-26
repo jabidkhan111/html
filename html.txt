@@ -1,0 +1,33 @@
+package com.jksurajpuriya.perfectwhats;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+public class PrivacyPolicyActivity extends AppCompatActivity {
+    WebView webView;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_privacy_policy);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Perfect Whats Privacy Policy");
+
+        
+        // res -> New -> Folder -> Assets Folder
+        // assets on right click and paste html file.
+        // after that Create new Activity 
+        
+        
+        webView=findViewById(R.id.webView);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("file:///android_asset/PerfectWhatsPrivacyPolicy.html");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+    }
+}
