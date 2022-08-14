@@ -11,6 +11,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("App Name Privacy Policy");
 
+	//For Banner Ads
         BannerAds("FIREBASE BANNER ADS LINK");
 		
 		res-> New-> Folder-> Assets Folder then finish
@@ -25,6 +26,8 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
     }
+    
+    //For Banner Ads
     public void BannerAds(String bannerUnitId){
         Firebase.setAndroidContext(this);
         Firebase firebase = new Firebase(bannerUnitId);
