@@ -1,0 +1,49 @@
+
+public class PrivacyPolicyActivity extends AppCompatActivity {
+    WebView webView;
+    String data;
+    ActivityPrivacyPolicyBinding binding;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding=ActivityPrivacyPolicyBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("App Name Privacy Policy");
+
+        BannerAds("FIREBASE BANNER ADS LINK");
+		
+		res-> New-> Folder-> Assets Folder then finish
+		after that html file(this file extention in html) paste in assets folder
+
+
+        webView=findViewById(R.id.webView);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("file:///android_asset/Privacy_Policy.html");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+    }
+    public void BannerAds(String bannerUnitId){
+        Firebase.setAndroidContext(this);
+        Firebase firebase = new Firebase(bannerUnitId);
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                data=dataSnapshot.getValue(String.class);
+                AdView mAdView = new AdView(PrivacyPolicyActivity.this);
+                mAdView.setAdUnitId(data);
+                binding.bannerAdsContainer.addView(mAdView);
+                mAdView.setAdSize(AdSize.BANNER);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+}
